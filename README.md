@@ -1,7 +1,7 @@
 ![Logo](app_screenshots/logo.png)
 
 ## Project Overview
-✨<span style="color:#fe5900; font-weight:700;">TikTokify My Notes</span>✨ is a web app that transforms uploaded notes into short, dynamic audio scripts inspired by popular TikTok videos.🤠 
+✨<span style="color:#fe5900; font-weight:700;">TikTokify My Notes</span>✨ is a web app that transforms uploaded notes into short, dynamic audios inspired by popular TikTok videos.🤠 
 
 Users will:
 - Upload their notes
@@ -47,8 +47,7 @@ The application is live and ready to use! No installation required.
 
 Note the following before you test
 - Please keep the notes uploaded short - Around 200 words (I'll only be generating an audio output of about 1 min so I don't use up all my credits)
-- I'm running out of ElevenLabs API credits so don't give tooo many tries (1-5 tries should be fine for the hackathon; just want to be safe)
-- The backend server times out after 15 mins of inactivity. If so you will get the error: "Request timed out after 30 seconds. Please try again 🤠" Just give it a minute or two and retry
+- The backend server times out after 15 mins of inactivity (because I'm on the free version). If so you will get the error: "Request timed out after 60 seconds. Please try again 🤠" Just give it a minute or two and retry
 
 ## Local Development Setup
 
