@@ -14,7 +14,7 @@ app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "https://tiktok-my-notes.vercel.app",
+        "https://tiktokify-my-notes.vercel.app",
         "http://localhost:3000",
         "http://localhost:3001"
     ],
