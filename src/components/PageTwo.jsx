@@ -21,7 +21,7 @@ const translations = {
     errorStyle: "Oops, you didn't select a TikTok style...",
     errorSize: "File size must be less than 5MB",
     styles: {
-      1: "Soft-spoken ASMR",
+      1: "Gentle ASMR",
       2: "Bestie Facetime",
       3: "Juicy Storytime",
       4: "True Crime Story"
@@ -275,7 +275,7 @@ export default function PageTwo({ onGoBack, language }) {
           {t.chooseStyle}
         </p>
 
-        <div className="mt-3 sm:mt-4 flex gap-2 sm:gap-3 md:gap-4 justify-start sm:justify-center flex-nowrap overflow-x-auto pb-2">
+        <div className="mt-3 sm:mt-4 flex gap-2 sm:gap-3 md:gap-4 justify-center flex-wrap md:flex-nowrap pb-2">
           {styles.map((style) => (
             <div
               key={style.id}
@@ -291,9 +291,11 @@ export default function PageTwo({ onGoBack, language }) {
                 alt={style.label}
                 className="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 object-cover rounded-md transition-all duration-200 hover:scale-110 hover:shadow-[0_0_30px_rgba(255,200,0,1)]"
               />
-              <p className="mt-1 sm:mt-2 text-xs sm:text-sm font-bold text-[#555555] text-center whitespace-nowrap">
-                {t.styles[style.id]}
-              </p>
+              {language !== "English" && (
+                <p className="mt-1 sm:mt-2 text-xs sm:text-sm font-bold text-[#555555] text-center whitespace-nowrap">
+                  {t.styles[style.id]}
+                </p>
+              )}
             </div>
           ))}
         </div>
