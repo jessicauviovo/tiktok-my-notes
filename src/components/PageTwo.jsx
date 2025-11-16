@@ -172,7 +172,7 @@ export default function PageTwo({ onGoBack, language }) {
       formData.append("style", selectedStyle);
       formData.append("language", language);
 
-      const response = await fetch("http://localhost:8000/upload", {
+      const response = await fetch("https://tiktokify-my-notes.onrender.com/upload", {
         method: "POST",
         body: formData,
       });
