@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import notebookImage from "../assets/home_img.png";
 
 import element2 from "../assets/element2.png";
