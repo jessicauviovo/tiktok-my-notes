@@ -223,7 +223,7 @@ export default function PageTwo({ onGoBack, language }) {
   ];
 
   return (
-    <div className="bg-[#FF6A1A] min-h-screen w-full relative px-10 py-8 overflow-hidden font-quicksand">
+    <div className="bg-[#FF6A1A] min-h-screen w-full relative px-4 sm:px-6 md:px-10 py-4 sm:py-6 md:py-8 overflow-hidden font-quicksand">
       {loading && (
         <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50">
           <p className="text-white text-4xl font-quicksand font-bold">
@@ -237,27 +237,28 @@ export default function PageTwo({ onGoBack, language }) {
 
       {/* Logo */}
       <div
-        className="absolute top-6 left-6 flex items-center gap-2 text-[#fffacd] font-quicksand font-bold text-xl cursor-pointer"
+        className="absolute top-3 sm:top-4 md:top-6 left-3 sm:left-4 md:left-6 flex items-center gap-1 sm:gap-2 text-[#fffacd] font-quicksand font-bold text-xs sm:text-sm md:text-base lg:text-xl cursor-pointer z-10"
         onClick={onGoBack}
       >
-        <span className="text-4xl">∿</span>
-        TIKTOKIFY MY NOTES
+        <span className="text-2xl sm:text-3xl md:text-4xl">∿</span>
+        <span className="hidden sm:inline">TIKTOKIFY MY NOTES</span>
+        <span className="sm:hidden">TIKTOKIFY</span>
       </div>
 
       {/* Upload Notes */}
-      <div className="bg-[#fffacd] rounded-2xl p-6 mt-20 flex justify-between items-center max-w-2xl mx-auto cursor-pointer hover:scale-105 transition-all duration-300" onMouseEnter={playHoverSound}>
-        <p className="text-orange-600 font-black uppercase text-2xl">
+      <div className="bg-[#fffacd] rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 mt-16 sm:mt-18 md:mt-20 flex flex-col sm:flex-row justify-between items-center gap-4 max-w-2xl mx-auto cursor-pointer hover:scale-105 transition-all duration-300" onMouseEnter={playHoverSound}>
+        <p className="text-orange-600 font-black uppercase text-lg sm:text-xl md:text-2xl text-center sm:text-left">
           {t.uploadNotes}
         </p>
         <div className="flex flex-col items-center gap-2">
           <button
-            className="bg-white px-6 py-3 rounded-md shadow font-arial text-[#737373]"
+            className="bg-white px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-md shadow font-arial text-[#737373] text-sm sm:text-base"
             onClick={() => fileInputRef.current.click()}
           >
             {t.chooseFile}
           </button>
-          <p className="text-xs text-gray-600 font-arial">{t.maxSize}</p>
-          {fileName && <span className="text-[#555555] font-medium font-arial">{fileName}</span>}
+          <p className="text-xs text-gray-600 font-arial text-center">{t.maxSize}</p>
+          {fileName && <span className="text-[#555555] font-medium font-arial text-xs sm:text-sm text-center break-all max-w-full">{fileName}</span>}
         </div>
         <input
           type="file"
@@ -269,17 +270,17 @@ export default function PageTwo({ onGoBack, language }) {
       </div>
 
       {/* Choose TikTok Style */}
-      <div className="bg-[#fffacd] rounded-2xl p-6 mt-6 max-w-2xl mx-auto cursor-pointer hover:scale-105 transition-all duration-300" onMouseEnter={playHoverSound}>
-        <p className="text-orange-600 font-black uppercase text-left text-2xl">
+      <div className="bg-[#fffacd] rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 mt-4 sm:mt-5 md:mt-6 max-w-2xl mx-auto cursor-pointer hover:scale-105 transition-all duration-300" onMouseEnter={playHoverSound}>
+        <p className="text-orange-600 font-black uppercase text-center sm:text-left text-lg sm:text-xl md:text-2xl">
           {t.chooseStyle}
         </p>
 
-        <div className="mt-4 flex gap-4 justify-center flex-nowrap overflow-x-auto">
+        <div className="mt-3 sm:mt-4 flex gap-2 sm:gap-3 md:gap-4 justify-start sm:justify-center flex-nowrap overflow-x-auto pb-2">
           {styles.map((style) => (
             <div
               key={style.id}
               onClick={() => setSelectedStyle(style.id)}
-              className={`cursor-pointer flex flex-col items-center p-2 rounded-xl border-4 transition-all duration-200 ${
+              className={`cursor-pointer flex flex-col items-center p-1.5 sm:p-2 rounded-lg sm:rounded-xl border-3 sm:border-4 transition-all duration-200 flex-shrink-0 ${
                 selectedStyle === style.id
                   ? "border-[#0B5C66] bg-[#FFEDCC]"
                   : "border-transparent"
@@ -288,9 +289,9 @@ export default function PageTwo({ onGoBack, language }) {
               <img
                 src={style.image}
                 alt={style.label}
-                className="w-32 h-32 object-cover rounded-md transition-all duration-200 hover:scale-110 hover:shadow-[0_0_30px_rgba(255,200,0,1)]"
+                className="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 object-cover rounded-md transition-all duration-200 hover:scale-110 hover:shadow-[0_0_30px_rgba(255,200,0,1)]"
               />
-              <p className="mt-2 text-sm font-bold text-[#555555] text-center">
+              <p className="mt-1 sm:mt-2 text-xs sm:text-sm font-bold text-[#555555] text-center whitespace-nowrap">
                 {t.styles[style.id]}
               </p>
             </div>
@@ -300,14 +301,14 @@ export default function PageTwo({ onGoBack, language }) {
 
       {/* Error Message */}
       {error && (
-        <p className="font-bold mt-4 text-center" style={{ color: "#fffacd" }}>
+        <p className="font-bold mt-3 sm:mt-4 text-center text-sm sm:text-base px-4" style={{ color: "#fffacd" }}>
         {error}</p>
       )}
 
       {/* Generate Button */}
-      <div className="flex justify-center mt-6">
+      <div className="flex justify-center mt-4 sm:mt-5 md:mt-6">
         <button
-          className="bg-[#0f606b] text-white text-2xl md:text-3xl font-quicksand font-bold rounded-full px-16 py-5 shadow-lg hover:scale-105 transition-all duration-300 disabled:opacity-50"
+          className="bg-[#0f606b] text-white text-lg sm:text-xl md:text-2xl lg:text-3xl font-quicksand font-bold rounded-full px-10 sm:px-12 md:px-16 py-3 sm:py-4 md:py-5 shadow-lg hover:scale-105 transition-all duration-300 disabled:opacity-50"
           onClick={handleGenerate}
           disabled={loading}
         >
@@ -317,21 +318,21 @@ export default function PageTwo({ onGoBack, language }) {
 
       {/* Summary and Audio Display */}
       {(summary && audio) && (
-        <div ref={() => setTimeout(() => document.querySelector('.summary-section')?.scrollIntoView({behavior: 'smooth'}), 100)} className="max-w-2xl mx-auto mt-6 summary-section">
-          <p className="text-white font-bold uppercase text-center">{t.successMsg}</p>
+        <div ref={() => setTimeout(() => document.querySelector('.summary-section')?.scrollIntoView({behavior: 'smooth'}), 100)} className="max-w-2xl mx-auto mt-4 sm:mt-5 md:mt-6 summary-section px-2 sm:px-0">
+          <p className="text-white font-bold uppercase text-center text-sm sm:text-base md:text-lg">{t.successMsg}</p>
 
-          <div className="mt-6">
+          <div className="mt-4 sm:mt-5 md:mt-6">
 
-            <audio controls className="w-full mb-4 px-4">
+            <audio controls className="w-full mb-3 sm:mb-4 px-2 sm:px-4">
               <source src={`data:audio/mpeg;base64,${audio}`} type="audio/mpeg" />
               Your browser does not support the audio element.
             </audio>
 
-            <div className="flex gap-4 justify-center mb-8">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-6 sm:mb-8 px-2">
               <a
                 href={`data:audio/mpeg;base64,${audio}`}
                 download="tiktokify_audio.mp3"
-                className="bg-[#FFFFFF] text-[#555555] font-arial px-6 py-3 rounded-md shadow hover:bg-opacity-80 transition-all"
+                className="bg-[#FFFFFF] text-[#555555] font-arial px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-md shadow hover:bg-opacity-80 transition-all text-sm sm:text-base text-center"
               >
                 <span>📥  </span>{t.download}
               </a>
@@ -351,7 +352,7 @@ export default function PageTwo({ onGoBack, language }) {
                     alert('Audio link copied to clipboard');
                   }
                 }}
-                className="bg-[#FFFFFF] text-[#555555] font-arial px-6 py-3 rounded-md shadow hover:bg-opacity-80 transition-all"
+                className="bg-[#FFFFFF] text-[#555555] font-arial px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-md shadow hover:bg-opacity-80 transition-all text-sm sm:text-base text-center"
               >
                 <span>🔗 </span>{t.share}
               </button>
@@ -360,18 +361,18 @@ export default function PageTwo({ onGoBack, language }) {
         </div>
       )}
 
-      {/* Left side element */}
+      {/* Left side element - hidden on mobile */}
       <img
         src={element3}
         alt="Element 3"
-        className="absolute left-4 top-1/3 transform -translate-y-1/2 w-64 h-64 object-contain"
+        className="hidden md:block absolute left-2 md:left-4 top-1/3 transform -translate-y-1/2 w-32 md:w-48 lg:w-64 h-32 md:h-48 lg:h-64 object-contain opacity-50 md:opacity-70 lg:opacity-100 pointer-events-none"
       />
 
-      {/* Right side element */}
+      {/* Right side element - hidden on mobile */}
       <img
         src={element3}
         alt="Element 3"
-        className="absolute right-4 top-2/3 transform -translate-y-1/2 w-64 h-64 object-contain"
+        className="hidden md:block absolute right-2 md:right-4 top-2/3 transform -translate-y-1/2 w-32 md:w-48 lg:w-64 h-32 md:h-48 lg:h-64 object-contain opacity-50 md:opacity-70 lg:opacity-100 pointer-events-none"
       />
     </div>
   );
