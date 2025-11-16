@@ -187,11 +187,14 @@ async def upload_file(file: UploadFile = File(...), style: int = Form(...), lang
     
     try:
         # Use ElevenLabs SDK to generate audio
-        audio_bytes = elevenlabs_client.text_to_speech.convert(
+        audio_generator = elevenlabs_client.text_to_speech.convert(
             voice_id=voice_id,
             text=summary,
             model_id="eleven_multilingual_v2"
         )
+        
+        # Convert generator to bytes
+        audio_bytes = b"".join(audio_generator)
         
         # Convert to base64
         audio_b64 = base64.b64encode(audio_bytes).decode('utf-8')
