@@ -4,7 +4,7 @@ import requests
 from fastapi import FastAPI, UploadFile, File, Form, HTTPException, Response
 from fastapi.middleware.cors import CORSMiddleware
 from openai import OpenAI
-from elevenlabs import ElevenLabs
+from elevenlabs.client import ElevenLabs
 import PyPDF2
 from docx import Document
 
