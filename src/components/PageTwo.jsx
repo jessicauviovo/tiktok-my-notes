@@ -71,14 +71,14 @@ export default function PageTwo({ onGoBack }) {
       });
 
       if (!response.ok) {
-        throw new Error(`Error: ${response.statusText}`);
+        throw new Error(`Error 🫤: ${response.statusText}`);
       }
 
       const data = await response.json();
       setSummary(data.summary);
       setAudio(data.audio);
     } catch (error) {
-      setError(`Failed to generate summary: ${error.message}`);
+      setError(`Oops, there was a processing error. Details: ${error.message}`);
     } finally {
       setLoading(false);
     }
@@ -98,6 +98,16 @@ export default function PageTwo({ onGoBack }) {
 
   return (
     <div className="bg-[#FF6A1A] min-h-screen w-full relative px-10 py-8 overflow-hidden font-quicksand">
+      {loading && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50">
+          <p className="text-white text-4xl font-quicksand font-bold">
+            GENERATING
+            <span className="inline-block animate-bounce">.</span>
+            <span className="inline-block animate-bounce" style={{animationDelay: '0.2s'}}>.</span>
+            <span className="inline-block animate-bounce" style={{animationDelay: '0.4s'}}>.</span>
+          </p>
+        </div>
+      )}
 
       {/* Logo */}
       <div
@@ -120,11 +130,12 @@ export default function PageTwo({ onGoBack }) {
           >
             Choose File
           </button>
-          <p className="text-s text-gray-600 font-arial">Max file size: 5MB</p>
+          <p className="text-xs text-gray-600 font-arial">Max 5MB • PDF, DOCX, TXT</p>
           {fileName && <span className="text-[#555555] font-medium font-arial">{fileName}</span>}
         </div>
         <input
           type="file"
+          accept=".txt,.pdf,.doc,.docx"
           ref={fileInputRef}
           onChange={handleFileSelect}
           className="hidden"
@@ -151,7 +162,7 @@ export default function PageTwo({ onGoBack }) {
               <img
                 src={style.image}
                 alt={style.label}
-                className="w-32 h-32 object-cover rounded-md transition-transform duration-200 hover:scale-110"
+                className="w-32 h-32 object-cover rounded-md transition-all duration-200 hover:scale-110 hover:shadow-[0_0_30px_rgba(255,200,0,1)]"
               />
 
             </div>
@@ -197,24 +208,24 @@ export default function PageTwo({ onGoBack }) {
 
       {/* Summary and Audio Display */}
       {(summary && audio) && (
-        <div className="bg-[#fffacd] rounded-2xl p-6 mt-6 max-w-2xl mx-auto">
-          <p className="text-orange-600 font-bold uppercase text-center">Generated Your Tiktok-Style Audio! Here's some things to keep in mind:</p>
-          <p className="mt-4 text-black">{summary}</p>
+        <div ref={() => setTimeout(() => document.querySelector('.summary-section')?.scrollIntoView({behavior: 'smooth'}), 100)} className="max-w-2xl mx-auto mt-6 summary-section">
+          <p className="text-white font-bold uppercase text-center">AUDIO GENERATED SUCCESSFULLY 🤠 </p>
+          <p className="mt-4 text-black px-10">{summary}</p>
 
           <div className="mt-6">
-            <p className="text-orange-600 font-bold uppercase text-center mb-4">Audio Summary</p>
-            <audio controls className="w-full mb-4">
+
+            <audio controls className="w-full mb-4 px-4">
               <source src={`data:audio/mpeg;base64,${audio}`} type="audio/mpeg" />
               Your browser does not support the audio element.
             </audio>
 
-            <div className="flex gap-4 justify-center">
+            <div className="flex gap-4 justify-center mb-8">
               <a
                 href={`data:audio/mpeg;base64,${audio}`}
                 download="tiktok_summary_audio.mp3"
-                className="bg-[#0B5C66] text-white px-6 py-3 rounded-md shadow hover:bg-opacity-80 transition-all"
+                className="bg-[#FFFFFF] text-[#555555] font-arial px-6 py-3 rounded-md shadow hover:bg-opacity-80 transition-all"
               >
-                Download Audio
+                <span>📥  </span>Download
               </a>
               <button
                 onClick={() => {
@@ -232,9 +243,9 @@ export default function PageTwo({ onGoBack }) {
                     alert('Audio link copied to clipboard');
                   }
                 }}
-                className="bg-[#FF5C00] text-white px-6 py-3 rounded-md shadow hover:bg-opacity-80 transition-all"
+                className="bg-[#FFFFFF] text-[#555555] font-arial px-6 py-3 rounded-md shadow hover:bg-opacity-80 transition-all"
               >
-                Share Audio
+                <span>🔗 </span> Share
               </button>
             </div>
           </div>
